@@ -5,8 +5,8 @@ class Book extends Item {
     private String publisher;
     private boolean availableForRent;
 
-    public Book(int id, String title, String genre, Date releaseDate, double rentalFee, String author, String publisher) {
-        super(id, title, genre, releaseDate, rentalFee);
+    public Book(String title, String genre, Date releaseDate, double rentalFee, String author, String publisher , int id) {
+        super(title, genre, releaseDate, rentalFee , id);
         this.author = author;
         this.publisher = publisher;
         this.availableForRent = true;
@@ -27,17 +27,5 @@ class Book extends Item {
     public void setAvailableForRent(boolean availableForRent) {
         this.availableForRent = availableForRent;
     }
-
-    public void rentBook() {
-        if (availableForRent) {
-           //.....
-            availableForRent = false;
-        } else {
-            System.out.println("Sorry, this book is not available for rent.");
-        }
-    }
     
-    public void returnBook() {
-        availableForRent = true;
-    }
 }

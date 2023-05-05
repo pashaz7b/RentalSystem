@@ -1,18 +1,20 @@
 import java.util.*;
 
 public class Item {
-    private int id;
+    
     private String title;
     private String genre;
     private Date releaseDate;
     protected double rentalFee;
+    private int id;
 
-    public Item(int id, String title, String genre, Date releaseDate, double rentalFee) {
-        this.id = id;
+    public Item( String title, String genre, Date releaseDate, double rentalFee , int id) {
+        
         this.title = title;
         this.genre = genre;
         this.releaseDate = releaseDate;
         this.rentalFee = rentalFee;
+        this.id = id;
     }
 
     public int getId() {

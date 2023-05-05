@@ -5,8 +5,8 @@ public class Movie extends Item {
     private List<String> cast;
     private boolean availableForRent;
 
-    public Movie(int id, String title, String genre, Date releaseDate, double rentalFee, String director, List<String> cast) {
-        super(id, title, genre, releaseDate, rentalFee);
+    public Movie(String title, String genre, Date releaseDate, double rentalFee, String director, List<String> cast,int id) {
+        super(title, genre, releaseDate, rentalFee , id);
         this.director = director;
         this.cast = cast;
         this.availableForRent = true;
@@ -28,16 +28,4 @@ public class Movie extends Item {
         this.availableForRent = availableForRent;
     }
 
-    public void rentMovie() {
-        if (availableForRent) {
-            //...
-            availableForRent = false;
-        } else {
-            System.out.println("Sorry, this movie is not available for rent.");
-        }
-    }
-
-    public void returnMovie() {
-        availableForRent = true;
-    }
 }
