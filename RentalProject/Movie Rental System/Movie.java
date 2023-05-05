@@ -48,6 +48,6 @@ public class Movie {
     }
 
     public void setAvailable(boolean status) {
-        available = status;
+        this.available = status;
     }
 }

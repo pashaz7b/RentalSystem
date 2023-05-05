@@ -39,6 +39,7 @@ public class Rental {
     }
 
     public double calculateLateFee() {
-        return 0.0;
+        double feePerDay = 1.2;
+        return (feePerDay * (returnDate.getTime() - rentalDate.getTime()));
     }
 }

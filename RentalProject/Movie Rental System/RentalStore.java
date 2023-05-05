@@ -10,13 +10,39 @@ public class RentalStore {
     }
 
     public void register(Customer customer) {
-        customers.add(customer);
-        System.out.println("YOU HAVE BEEN REGISTERED SUCCESSFULLY!");   
+        boolean flag = flase;
+        for(Customer c : customers)
+        {
+            if(c.getId()==customer.getId())
+            {
+                System.out.println("AN ACCOUNT IS ALREADY REGISTERED HERE WITH THIS INFO!!!");
+                flag = true;
+                break;
+            }
+        }
+        if(!flag){
+            customers.add(customer);
+            System.out.println("YOU HAVE BEEN REGISTERED SUCCESSFULLY!");   
+        }
+        
     }
 
     public void addMovie(Movie movie) {
-        movies.add(movie);
-        System.out.println("THE MOVIE HAS BEEN ADDED SUCCESSFULLY!");
+        boolean flag = false;
+        for(Movie m : movies)
+        {
+            if(m.getId()==movie.getId())
+            {
+                System.out.println("THIS MOVIE HAS BEEN ADDED BEFORE!!!");
+                flag = true;
+                break;
+            }
+        }
+        if(!flag){
+            movies.add(movie);
+            System.out.println("THE MOVIE HAS BEEN ADDED SUCCESSFULLY!");
+        }
+       
     }
 
     public void removeMovie(Movie movie) {
@@ -73,6 +99,7 @@ public class RentalStore {
                     movie.setAvailable(false);
                     rented = true;
                     System.out.println("YOU HAVE SUCCESSFULLY RENTED THIS MOVIE!");
+                    break;
                 }
 
             }
@@ -84,15 +111,15 @@ public class RentalStore {
         }
         if(existed && !rented )
         {
-            System.out.println("SORRY THI MOVIE HAS BEEN RENTED");
+            System.out.println("SORRY THIS MOVIE HAS BEEN RENTED");
         }
-
-
     }
 
     public void returnMovie(Rental rental) {
 
         int i=0;
+        boolean flag = false;
+
         for(Customer c : customers)
         {
             if (c.getRentals().get(i).getId()==rental.getId())
@@ -100,30 +127,45 @@ public class RentalStore {
                 rental.getMovie().setAvailable(true);
                 rental.setReturnDate(new Date());
                 c.getRentals().remove(i);
-                System.out.println("YOU HAVA SUCCESSFULLY RETURNED THIS MOVIE!");
+                System.out.println("YOU HAVE SUCCESSFULLY RETURNED THIS MOVIE!");
+                flag = true;
                 break;
             }
             
             i++;
         }
+
+        if(!flag){
+            System.out.println("SORRY THERE IS PROBLEM WITH YOUR ORDER");
+        }
         
     }
 
     public Customer getCustomerById(int id) {
-        for (Customer customer : customers) {
+
+        for (Customer customer : customers)
+        {
             if (customer.getId() == id) {
+                System.out.println("HERE IS YOUR ORDER :");
                 return customer;
             }
         }
+
+        System.out.println("SORRY COULDN'T FIND THE CUSTOMER");
         return null;
     }
 
     public Movie getMovieById(int id) {
-        for (Movie movie : movies) {
+
+        for (Movie movie : movies)
+        {
             if (movie.getId() == id) {
+                System.out.println("HERE IS YOUR ORDER : ");
                 return movie;
             }
         }
+
+        System.out.println("SORRY COULDN'T FIND THE MOVIE");
         return null;
     }
 }
