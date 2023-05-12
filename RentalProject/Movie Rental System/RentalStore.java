@@ -1,16 +1,12 @@
 import java.util.*;
 
 public class RentalStore {
-    private List<Movie> movies;
-    private List<Customer> customers;
 
-    public RentalStore() {
-        movies = new ArrayList<>();
-        customers = new ArrayList<>();
-    }
+    private List<Movie> movies = new ArrayList<>();
+    private List<Customer> customers = new ArrayList<>();
 
     public void register(Customer customer) {
-        boolean flag = flase;
+        boolean flag = false;
         for(Customer c : customers)
         {
             if(c.getId()==customer.getId())
