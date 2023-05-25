@@ -3,12 +3,19 @@ import java.util.*;
 
 public class RentalStore {
 
-    private List<Customer> customers = new ArrayList<>();
-    private List<Movie> movies = new ArrayList<>();
-    private List<Book> books = new ArrayList<>();
-    private List<Game> games = new ArrayList<>();
-    private static List<Item> items = new ArrayList<>();
+    private ArrayList<Customer> customers = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Game> games = new ArrayList<>();
+    private static ArrayList<Item> items = new ArrayList<>();
+    AllModules allModulesList = new AllModules();
 
+    public RentalStore(){
+        customers = allModulesList.customers;
+        movies = allModulesList.movies;
+        books = allModulesList.books;
+        games = allModulesList.games;
+    }
 
     public void register(Customer customer) {
         boolean flag = false;
@@ -21,6 +28,7 @@ public class RentalStore {
         }
         if (!flag) {
             customers.add(customer);
+            allModulesList.customers = customers;
             System.out.println("YOU HAVE BEEN REGISTERED SUCCESSFULLY!");
         }
 
@@ -37,6 +45,7 @@ public class RentalStore {
         }
         if (!flag) {
             movies.add(movie);
+            allModulesList.movies = movies;
             System.out.println("THE MOVIE HAS BEEN ADDED SUCCESSFULLY!");
         }
     }
@@ -52,6 +61,7 @@ public class RentalStore {
         }
         if (!flag) {
             books.add(book);
+            allModulesList.books = books;
             System.out.println("THE BOOK HAS BEEN ADDED SUCCESSFULLY!");
         }
     }
@@ -67,6 +77,7 @@ public class RentalStore {
         }
         if (!flag) {
             games.add(game);
+            allModulesList.games = games;
             System.out.println("THE GAME HAS BEEN ADDED SUCCESSFULLY!");
         }
     }
@@ -76,6 +87,7 @@ public class RentalStore {
         for (Movie m : movies) {
             if (m.getId() == movie.getId() && m.isAvailable()) {
                 movies.remove(movie);
+                allModulesList.movies.remove(movie);
                 found = true;
                 break;
             }
@@ -91,6 +103,7 @@ public class RentalStore {
         for (Book b : books) {
             if (b.getId() == book.getId() && b.isAvailable()) {
                 books.remove(book);
+                allModulesList.books.remove(book);
                 found = true;
                 break;
             }
@@ -106,6 +119,7 @@ public class RentalStore {
         for (Game g : games) {
             if (g.getId() == game.getId() && g.isAvailable()) {
                 games.remove(game);
+                allModulesList.games.remove(game);
                 found = true;
                 break;
             }
