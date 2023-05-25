@@ -15,8 +15,6 @@ public class Main {
         Customer joshn = allModulesList.getCustomers().get(0);
         Customer Emily = allModulesList.customers.get(1);
         Customer Brown = allModulesList.customers.get(2);
-        RentalStore rentalStore = new RentalStore();
-
 
         for (Item tempItem : allModulesList.getBooks()) {
             if (tempItem.getId() == 3) {
