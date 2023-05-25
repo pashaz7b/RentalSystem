@@ -5,7 +5,7 @@ public class Item {
     private String title;
     private String genre;
     private Date releaseDate;
-    protected double rentalFee;
+    private double rentalFee;
     private int id;
     public boolean availableForRent;
 

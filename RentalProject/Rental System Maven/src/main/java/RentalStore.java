@@ -1,3 +1,4 @@
+import java.awt.event.ItemEvent;
 import java.util.*;
 
 public class RentalStore {
@@ -6,7 +7,7 @@ public class RentalStore {
     private List<Movie> movies = new ArrayList<>();
     private List<Book> books = new ArrayList<>();
     private List<Game> games = new ArrayList<>();
-    private List<Item> items = new ArrayList<>();
+    private static List<Item> items = new ArrayList<>();
 
 
     public void register(Customer customer) {
@@ -383,7 +384,29 @@ public class RentalStore {
         }
     }
 
-    public void addItem(Item item) {
+    public void returnItem(Rental rental){
+        int i = 0;
+        boolean flag = false;
+
+        for (Customer c : customers) {
+            if (c.getRentals().get(i).getId() == rental.getId()) {
+                rental.getItem().setAvailable(true);
+                rental.setReturnDate(new Date());
+                c.getRentals().remove(i);
+                System.out.println("YOU HAVE SUCCESSFULLY RETURNED THIS ITEM!");
+                flag = true;
+                break;
+            }
+
+            i++;
+        }
+
+        if (!flag) {
+            System.out.println("SORRY THERE IS PROBLEM WITH YOUR ORDER");
+        }
+    }
+
+    public static void addItem(Item item) {
         boolean flag = false;
         for (Item i : items) {
             if (i.getId() == item.getId()) {
@@ -399,11 +422,47 @@ public class RentalStore {
     }
 
 
+    public static void removeItem (Item item) {
+        boolean found = false;
+        for (Item i : items) {
+            if (i.getId() == item.getId() && i.isAvailable()) {
+                items.remove(item);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("COULDN'T FIND THE ITEM! ");
+        }
+    }
 
 
+    public static List<Item> getAvailableItem() {
+
+        List<Item> availableItemList = new ArrayList<>();
+
+        for (Item i : items) {
+            if (i.isAvailable()) {
+                availableItemList.add(i);
+            }
+        }
+
+        return availableItemList;
+    }
 
 
+    public static Item getITEMById(int id) {
 
+        for (Item i : items) {
+            if (i.getId() == id) {
+                System.out.println("HERE IS YOUR ORDER : ");
+                return i;
+            }
+        }
+
+        System.out.println("SORRY COULDN'T FIND THE ITEM");
+        return null;
+    }
 
 }
 

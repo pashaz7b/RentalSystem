@@ -59,6 +59,10 @@ public class Rental{
         return id;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     public Date getRentalDate() {
         return rentalDate;
     }
